@@ -1,0 +1,533 @@
+{
+  "id": "40bcebab-4e7f-483d-adba-a1584fcda710",
+  "appName": "root_agent",
+  "userId": "user",
+  "state": {},
+  "events": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "hello"
+          }
+        ],
+        "role": "user"
+      },
+      "invocationId": "e-989234c8-1ed4-4767-9b4a-28a61bfafdba",
+      "author": "user",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "39f32197-c818-4262-802b-993c0b4ea68b",
+      "timestamp": 1763102814.115787
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Hello! I can help you schedule a meeting. What is the meeting topic?"
+          }
+        ],
+        "role": "model"
+      },
+      "usageMetadata": {
+        "candidatesTokenCount": 16,
+        "promptTokenCount": 440,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 440
+          }
+        ],
+        "totalTokenCount": 456
+      },
+      "invocationId": "e-989234c8-1ed4-4767-9b4a-28a61bfafdba",
+      "author": "root_agent",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "f993aac9-1d81-4998-b013-d4cd02553d7a",
+      "timestamp": 1763102815.931547
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "business analysis"
+          }
+        ],
+        "role": "user"
+      },
+      "invocationId": "e-a5ff303d-49e3-4735-af01-67a1255be79d",
+      "author": "user",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "b2d02844-3a0c-44d6-b7a9-ba35529f0cd9",
+      "timestamp": 1763102830.816564
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Got it. What is the start time for the meeting? Please provide it in ISO format (e.g., 2025-11-16T14:30:00)."
+          }
+        ],
+        "role": "model"
+      },
+      "usageMetadata": {
+        "candidatesTokenCount": 44,
+        "promptTokenCount": 460,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 460
+          }
+        ],
+        "totalTokenCount": 504
+      },
+      "invocationId": "e-a5ff303d-49e3-4735-af01-67a1255be79d",
+      "author": "root_agent",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "4ca2d24f-baf5-4315-8936-eae24c250fb4",
+      "timestamp": 1763102832.228308
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "2025-11-16T14:30:00"
+          }
+        ],
+        "role": "user"
+      },
+      "invocationId": "e-c6853da4-efe0-40a3-8c2a-d5c8153748b5",
+      "author": "user",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "e75a6734-cf6b-41c5-9c06-4bd348a4948f",
+      "timestamp": 1763102842.097995
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Understood. What is the timezone for this meeting? Please use an IANA timezone (e.g., Asia/Kolkata)."
+          }
+        ],
+        "role": "model"
+      },
+      "usageMetadata": {
+        "candidatesTokenCount": 28,
+        "promptTokenCount": 525,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 525
+          }
+        ],
+        "thoughtsTokenCount": 19,
+        "totalTokenCount": 572
+      },
+      "invocationId": "e-c6853da4-efe0-40a3-8c2a-d5c8153748b5",
+      "author": "root_agent",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "0256e2bb-d5ca-4579-aaf3-a18de378a567",
+      "timestamp": 1763102844.090707
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Asia/Kolkata"
+          }
+        ],
+        "role": "user"
+      },
+      "invocationId": "e-96a0d28d-c2ad-4d6a-86db-1b633126616e",
+      "author": "user",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "712e37be-d353-47ea-b620-9da6d4a2ec74",
+      "timestamp": 1763102852.878618
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "What is the duration of the meeting in minutes?"
+          }
+        ],
+        "role": "model"
+      },
+      "usageMetadata": {
+        "candidatesTokenCount": 10,
+        "promptTokenCount": 560,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 560
+          }
+        ],
+        "thoughtsTokenCount": 62,
+        "totalTokenCount": 632
+      },
+      "invocationId": "e-96a0d28d-c2ad-4d6a-86db-1b633126616e",
+      "author": "root_agent",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "bd0f10ae-e327-498e-8005-69b7f39aea83",
+      "timestamp": 1763102854.739595
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "20"
+          }
+        ],
+        "role": "user"
+      },
+      "invocationId": "e-0e1715fc-ab07-4040-a729-029c7259c132",
+      "author": "user",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "eb314dab-72fc-4e09-bd3d-c3e4245af4f0",
+      "timestamp": 1763102874.225812
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Thank you. Before I schedule, would you like to enable any of these optional settings?\n\n*   Join before host\n*   Mute on entry\n*   Waiting room"
+          }
+        ],
+        "role": "model"
+      },
+      "usageMetadata": {
+        "candidatesTokenCount": 36,
+        "promptTokenCount": 574,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 574
+          }
+        ],
+        "thoughtsTokenCount": 90,
+        "totalTokenCount": 700
+      },
+      "invocationId": "e-0e1715fc-ab07-4040-a729-029c7259c132",
+      "author": "root_agent",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "815fdfc1-d04a-4185-8d83-68461be6a757",
+      "timestamp": 1763102876.642858
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Join before host"
+          }
+        ],
+        "role": "user"
+      },
+      "invocationId": "e-cff77cb3-5cc7-423c-b585-54289349a7a5",
+      "author": "user",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "0bb6a266-01cc-481e-bb0e-120972139c0b",
+      "timestamp": 1763102883.464781
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "I have all the details needed to schedule the meeting, except for your name, email, and phone number. Could you please provide them?"
+          }
+        ],
+        "role": "model"
+      },
+      "usageMetadata": {
+        "candidatesTokenCount": 28,
+        "promptTokenCount": 615,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 615
+          }
+        ],
+        "thoughtsTokenCount": 154,
+        "totalTokenCount": 797
+      },
+      "invocationId": "e-cff77cb3-5cc7-423c-b585-54289349a7a5",
+      "author": "root_agent",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "818a6fd3-1294-4cd1-a39e-9e88bfbd4ca9",
+      "timestamp": 1763102886.579482
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "vicky kumar"
+          }
+        ],
+        "role": "user"
+      },
+      "invocationId": "e-80a23079-ba75-4d49-8352-f05235e3e473",
+      "author": "user",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "44f8d010-b4f6-45ee-ad4b-2f8481295940",
+      "timestamp": 1763102898.579545
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Thanks, Vicky Kumar. What is your email address and phone number?"
+          }
+        ],
+        "role": "model"
+      },
+      "usageMetadata": {
+        "candidatesTokenCount": 14,
+        "promptTokenCount": 648,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 648
+          }
+        ],
+        "thoughtsTokenCount": 40,
+        "totalTokenCount": 702
+      },
+      "invocationId": "e-80a23079-ba75-4d49-8352-f05235e3e473",
+      "author": "root_agent",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "aa9a214a-bcb3-4a38-9007-e2f375c76ce6",
+      "timestamp": 1763102900.405995
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "vicky@bol7.com 918239957923"
+          }
+        ],
+        "role": "user"
+      },
+      "invocationId": "e-b2541043-fa44-4925-a60a-05f476fabb70",
+      "author": "user",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "fa4ee67d-8ded-4f41-9815-4de4cf8d0a37",
+      "timestamp": 1763102914.75749
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "functionCall": {
+              "id": "adk-b78060cd-c5ed-4af6-8fb4-b886cca232e6",
+              "args": {
+                "meeting_info": "Business analysis with join before host enabled.",
+                "name": "Vicky Kumar",
+                "start_time": "2025-11-16T14:30:00",
+                "email": "vicky@bol7.com",
+                "timezone": "Asia/Kolkata",
+                "phone": "918239957923",
+                "duration": 20
+              },
+              "name": "schedule_meeting"
+            },
+            "thoughtSignature": "CikB0e2Kbz0IEmORMwOqcWG7KjOYNyttclQWUaYMi-cHFqjr04ezYkHuOgp7AdHtim8gO9XRvTGkjzhw61agc5rJpmPVM3YWKEENmJyRl9xHFvjnu0BgOoqWRRPlnUbnfqBzuI11ScTr7h_07lQ0MDaXcN8boGq_VJQxk21CUS6k3K6okQtvHn90_hNx_eGpGzi4Dwxjm4SIF9RTdJMZVmaosTfYaEDZCu8BAdHtim_4eh9s1L-Lw5di9fSfR0q1urPcPiTchud7iONcVtV2GadNBiaYyKCddJc-ar-6mIlfESzrCtkOuGtbBClGlxElM2UMrxxOdEv_raqv9A008Az0WYrOZy8Pty7fJucwwVDjCyLr5IW_CtmaYTTGpp7a73PBaqevEp75wyewfOjPo865MJT5ERblBYwua2WeDJvUIU_9DgjKIJEX7WbfuaNRDd7L_jLqWAKFLClvu5VfKp23-mfFRY59lTAiESXS9FYhRJh2qJwxGd09X8HBPkHDpxPnQSVsFN5gobfGo7PnwOLCSvANSctm7hwK9gEB0e2Kb0TW9iXIgZ4RhtlvEmdGCDDZrcMwpwFSMwNFC2Vr4T3z34Z-g5eqTQ67R_E8SEB6cnV5FugXE_bsMXep74a0waV2XmCPxJ7pE7uAUaN-cjZbkoK6TEwZn5GUmpDHVPMgO-5mPMHxHTmH8OwfSf3SHaCIr8Zk7w43ZgLYd91TDWoWsP0KlN44d7pwt0qZIAl7hHfC2S8CrNONznPdpY0yV8vAT3AgydcTBtxU36zJfmaCn3nNth6VS0FNYcpI1rW3kNthsC37umU-zDxVrRiiQEG82kAF22wJ4ZyeUKcQLvhWHpgQbTWg1RmYYPR6feiBIMoKcwHR7YpvecSrdnzi4h7MUsZ-AeRV54UlfMdTGW_ouCTX_6GgPgwYpGzdVxPUjo95hyvJlcRUB4vENm9OmDntqMddrAZte7dq3YQJF_A4iDbfMAvfEWvLI8_hqlM9rEtE_t_K_0NQAXr816y60nbuTcJmWtA="
+          }
+        ],
+        "role": "model"
+      },
+      "usageMetadata": {
+        "candidatesTokenCount": 97,
+        "promptTokenCount": 684,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 684
+          }
+        ],
+        "thoughtsTokenCount": 140,
+        "totalTokenCount": 921
+      },
+      "invocationId": "e-b2541043-fa44-4925-a60a-05f476fabb70",
+      "author": "root_agent",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "57a5ceae-2ef1-4e3e-846d-36b7a0b76f96",
+      "timestamp": 1763102914.810887
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "functionResponse": {
+              "id": "adk-b78060cd-c5ed-4af6-8fb4-b886cca232e6",
+              "name": "schedule_meeting",
+              "response": {
+                "content": "Meeting booked successfully!\n\n**Details:**\n- **With:** Vicky Kumar\n- **When:** Nov 16, 2025 at 02:30 PM (Asia/Kolkata)\n- **Duration:** 20 min\n- **Topic:** Business analysis with join before host enabled.\n- **Join Link:** https://us05web.zoom.us/j/85074451763?pwd=pa2GvaJ5hIODeGXqI9pJDSsVbwbap5.1\n- **Password:** vcVpY7\n\nConfirmation sent to vicky@bol7.com.",
+                "artifact": {
+                  "meeting": {
+                    "created_at": "2025-11-14T06:48:38Z",
+                    "duration": 20,
+                    "id": 85074451763,
+                    "join_url": "https://us05web.zoom.us/j/85074451763?pwd=pa2GvaJ5hIODeGXqI9pJDSsVbwbap5.1",
+                    "password": "vcVpY7",
+                    "start_time": "2025-11-16T09:00:00Z",
+                    "start_url": "https://us05web.zoom.us/s/85074451763?zak=eyJ0eXAiOiJKV1QiLCJzdiI6IjAwMDAwMiIsInptX3NrbSI6InptX28ybSIsImFsZyI6IkhTMjU2In0.eyJpc3MiOiJ3ZWIiLCJjbHQiOjAsIm1udW0iOiI4NTA3NDQ1MTc2MyIsImF1ZCI6ImNsaWVudHNtIiwidWlkIjoiX0hMRmNPVTFSU1cyX25oQU1xOWpKUSIsInppZCI6IjZmMmI2NmFhMmMzNDRkNWJhZDlmMWNiMTkwNWU3YTJkIiwic2siOiI3MTUzOTE1NjUxMzg1MjcyMzI4Iiwic3R5IjoxMDAsIndjZCI6InVzMDUiLCJleHAiOjE3NjMxMTAxMTksImlhdCI6MTc2MzEwMjkxOSwiYWlkIjoid2dHQnhPVXpRbk9PSzBoOFVvRUF0USIsImNpZCI6IiJ9.JJ-o-QODzshgUDOYpEtnKQxP-bshq_mVAkXFcBG8HzI",
+                    "timezone": "Asia/Kolkata",
+                    "topic": "Business analysis with join before host enabled. (with Vicky Kumar)"
+                  },
+                  "success": true
+                },
+                "is_error": false
+              }
+            }
+          }
+        ],
+        "role": "user"
+      },
+      "invocationId": "e-b2541043-fa44-4925-a60a-05f476fabb70",
+      "author": "root_agent",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "61b21946-aa31-4f2a-aacd-3aeea7350e2d",
+      "timestamp": 1763102919.247141
+    },
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "Alright Vicky Kumar, your meeting \"Business analysis with join before host enabled.\" has been successfully scheduled for November 16, 2025 at 02:30 PM Asia/Kolkata, lasting 20 minutes.\n\nHere are the details:\n*   **With:** Vicky Kumar\n*   **When:** Nov 16, 2025 at 02:30 PM (Asia/Kolkata)\n*   **Duration:** 20 min\n*   **Topic:** Business analysis with join before host enabled.\n*   **Join Link:** https://us05web.zoom.us/j/85074451763?pwd=pa2GvaJ5hIODeGXqI9pJDSsVbwbap5.1\n*   **Password:** vcVpY7\n\nA confirmation has been sent to vicky@bol7.com."
+          }
+        ],
+        "role": "model"
+      },
+      "usageMetadata": {
+        "cacheTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 786
+          }
+        ],
+        "cachedContentTokenCount": 786,
+        "candidatesTokenCount": 203,
+        "promptTokenCount": 1612,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1612
+          }
+        ],
+        "totalTokenCount": 1815
+      },
+      "invocationId": "e-b2541043-fa44-4925-a60a-05f476fabb70",
+      "author": "root_agent",
+      "actions": {
+        "stateDelta": {},
+        "artifactDelta": {},
+        "requestedAuthConfigs": {},
+        "requestedToolConfirmations": {}
+      },
+      "longRunningToolIds": [],
+      "id": "a059b4b1-7bf8-4f93-8bcc-03032ffed522",
+      "timestamp": 1763102922.008067
+    }
+  ],
+  "lastUpdateTime": 1763102808
+}

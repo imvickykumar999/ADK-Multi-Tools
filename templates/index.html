@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://avatars.githubusercontent.com/u/67197854" rel="icon">
+
+    <title>ADK Agent Web Chat - Session {{ current_session_id }}</title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Scrollbar for Chat Window */
+        .chat-window::-webkit-scrollbar {
+            width: 8px;
+        }
+        .chat-window::-webkit-scrollbar-thumb {
+            background-color: #a3a3a3; /* gray-400 */
+            border-radius: 4px;
+        }
+        .chat-window::-webkit-scrollbar-track {
+            background-color: #f3f4f6; /* gray-100 */
+        }
+        /* Use Inter font */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+    <script>
+        // Set up Tailwind configuration for the Inter font
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<!-- Full screen wrapper -->
+<body class="bg-gray-100 min-h-screen flex w-full"> 
+    
+    <!-- Sidebar for Session History -->
+    <!-- MODIFIED: Changed lg:mr-0 to lg:mr-4 to add a vertical gap (margin-right) on desktop -->
+    <div id="sidebar" class="fixed top-0 left-0 h-screen w-64 bg-white shadow-2xl ring-1 ring-gray-200 overflow-y-auto p-4 flex-shrink-0 z-50 
+            transform -translate-x-full transition-transform duration-300
+            lg:static lg:transform-none lg:h-[calc(100vh-2rem)] lg:mt-4 lg:mb-4 lg:ml-4 lg:mr-4 lg:rounded-xl">
+        <!-- MODIFIED: Added text-center class to center the text -->
+        <h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2 text-center">Sessions</h2>
+        <a href="/" id="new-chat-link" class="block w-full text-center py-2 mb-4 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition duration-200">
+            + New Chat
+        </a>
+        <div id="session-list" class="space-y-1">
+            <!-- Session links will be populated here by JavaScript -->
+        </div>
+    </div>
+    
+    <!-- Main Chat Area -->
+    <div class="w-full bg-white shadow-2xl ring-1 ring-gray-200 rounded-none overflow-hidden flex flex-col h-screen flex-grow 
+         lg:h-[calc(100vh-2rem)] lg:mt-4 lg:mb-4 lg:mr-4 lg:rounded-xl">
+        
+        <!-- Header -->
+        <header class="p-4 bg-indigo-600 text-white shadow-lg rounded-t-none lg:rounded-t-xl flex items-center">
+            <!-- Hamburger Button, visible only below large screen size -->
+            <button id="menu-button" class="lg:hidden p-2 mr-3 rounded-md hover:bg-indigo-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            <div class="flex-grow">
+                <h1 class="text-2xl font-extrabold tracking-tight">ADK Agent Chat</h1>
+                <!-- JINJA TEMPLATE VARIABLE INJECTION -->
+                <p class="text-sm opacity-80 mt-1">Current Session: <b id="current-session-display">{{ current_session_id }}</b></p>
+            </div>
+            
+            <!-- MODIFIED: Wrapped logo in an anchor tag for clickability -->
+            <a href="https://github.com/imvickykumar999/ADK-Flask" target="_blank" class="block">
+                <div id="logo-icon" class="p-0 ml-3 opacity-90 transition duration-200 hover:opacity-100 cursor-pointer">
+                    <!-- 
+                        NOTE: The image source uses the filename 'image_19fe10.png'. 
+                        In a Flask setup, ensure this file is accessible (e.g., placed in a 'static' folder).
+                    -->
+                    <img 
+                        src="image_19fe10.png" 
+                        alt="ADK Agent Logo" 
+                        class="h-12 w-12 rounded-full border-2 border-white shadow-lg object-cover"
+                        onerror="this.onerror=null; this.src='https://avatars.githubusercontent.com/u/67197854';"
+                    />
+                </div>
+            </a>
+            
+        </header>
+
+        <!-- Chat Window (Content will be filled by JavaScript on load) -->
+        <div id="chat-window" class="chat-window flex-grow overflow-y-auto p-4 space-y-4">
+            <!-- Chat messages go here -->
+        </div>
+
+        <!-- Input Form -->
+        <div class="p-4 border-t border-gray-200 bg-white">
+            <form id="chat-form" class="flex space-x-3">
+                <input 
+                    type="text" 
+                    id="user-input" 
+                    placeholder="Type your message here..." 
+                    required
+                    autocomplete="off"
+                    class="flex-grow p-3 border-2 border-gray-300 rounded-xl focus:ring-indigo-500 focus:border-indigo-500 transition duration-200"
+                />
+                <button 
+                    type="submit" 
+                    id="send-button"
+                    class="bg-indigo-600 text-white p-3 rounded-xl font-bold shadow-lg hover:bg-indigo-700 transition duration-200 active:scale-[0.98] disabled:bg-gray-400"
+                >
+                    Send
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // JINJA TEMPLATE VARIABLE INJECTION
+            const currentSessionId = "{{ current_session_id }}"; 
+            const form = document.getElementById('chat-form');
+            const userInput = document.getElementById('user-input');
+            const chatWindow = document.getElementById('chat-window');
+            const sendButton = document.getElementById('send-button');
+            const sidebar = document.getElementById('sidebar');
+            const menuButton = document.getElementById('menu-button');
+            const sessionList = document.getElementById('session-list');
+
+            // --- Smooth Scroll Function ---
+            function scrollToBottom() {
+                chatWindow.scrollTo({
+                    top: chatWindow.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }
+
+            // --- Sidebar Logic ---
+            const overlay = document.createElement('div');
+            overlay.className = 'fixed inset-0 bg-black opacity-0 transition-opacity duration-300 z-40 lg:hidden pointer-events-none';
+            document.body.appendChild(overlay);
+
+            let isSidebarOpen = false;
+
+            function toggleSidebar(open) {
+                // Only run on mobile (screen width < 1024px, the 'lg' breakpoint)
+                if (window.innerWidth >= 1024) return;
+                
+                isSidebarOpen = (open !== undefined) ? open : !isSidebarOpen;
+
+                if (isSidebarOpen) {
+                    sidebar.classList.remove('-translate-x-full');
+                    overlay.classList.remove('opacity-0', 'pointer-events-none');
+                    overlay.classList.add('opacity-50', 'pointer-events-auto');
+                } else {
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.remove('opacity-50', 'pointer-events-auto');
+                    overlay.classList.add('opacity-0', 'pointer-events-none');
+                }
+            }
+
+            menuButton.addEventListener('click', () => {
+                toggleSidebar();
+            });
+            
+            // Close sidebar when clicking the overlay
+            overlay.addEventListener('click', () => {
+                toggleSidebar(false);
+            });
+
+            // --- End Sidebar Logic ---
+
+            // Function to add a message to the chat window
+            function addMessage(text, role) {
+                const isUser = role === 'user';
+                const messageElement = document.createElement('div');
+                
+                if (isUser) {
+                    messageElement.className = 'flex justify-end';
+                    messageElement.innerHTML = `
+                        <div class="bg-indigo-600 text-white p-4 rounded-xl rounded-br-sm max-w-[80%] shadow-lg break-words whitespace-pre-wrap">
+                            <!-- Placeholder will be filled with text content -->
+                        </div>
+                    `;
+                } else { // agent
+                    messageElement.className = 'flex justify-start';
+                    messageElement.innerHTML = `
+                        <div class="bg-gray-200 text-gray-800 p-4 rounded-xl rounded-tl-sm max-w-[80%] shadow-lg break-words whitespace-pre-wrap">
+                            <!-- Placeholder will be filled with text content -->
+                        </div>
+                    `;
+                }
+                
+                // Sanitize text and handle HTML content for the welcome message
+                const contentDiv = messageElement.querySelector('div:last-child');
+                
+                // Check if the text is our specific welcome message HTML (using <b> tag)
+                if (role === 'agent' && text.includes('<b')) {
+                    contentDiv.innerHTML = text; 
+                } else {
+                    contentDiv.textContent = text;
+                }
+                
+                chatWindow.appendChild(messageElement);
+                
+                // NOTE: Immediate scrolling is removed here to allow smooth scrolling only after full history load/new message is posted.
+            }
+
+            // Function to populate the sidebar with session links
+            function populateSessionList(sessions) {
+                sessionList.innerHTML = ''; // Clear existing list
+                sessions.forEach(sessionId => {
+                    const link = document.createElement('a');
+                    link.href = `/?session_id=${sessionId}`;
+                    
+                    link.className = `block p-2 text-sm rounded-lg hover:bg-gray-200 transition duration-150 truncate 
+                        ${sessionId === currentSessionId ? 'bg-indigo-100 font-semibold text-indigo-700' : 'text-gray-700'}`;
+                    
+                    link.textContent = `Chat #${sessionId}`;
+                    link.addEventListener('click', () => toggleSidebar(false)); // Close sidebar on session change
+                    sessionList.appendChild(link);
+                });
+            }
+            
+            // Function to load and display chat history and sessions
+            async function loadChatData() {
+                try {
+                    const response = await fetch(`/history?session_id=${currentSessionId}`);
+                    const data = await response.json();
+                    
+                    // 1. Clear chat window first
+                    chatWindow.innerHTML = '';
+
+                    // 2. Load History
+                    const history = data.history || [];
+                    if (history.length === 0) {
+                        // Use the JS variable 'currentSessionId' here
+                        addMessage(`Welcome to Chat #<b class='text-indigo-700'>${currentSessionId}</b>! I am your ADK Agent, ready to assist you. Ask me anything!`, 'agent');
+                    } else {
+                        history.forEach(msg => {
+                            if (msg.role && msg.text) {
+                                addMessage(msg.text, msg.role);
+                            }
+                        });
+                    }
+                    
+                    // 3. Populate Session List
+                    populateSessionList(data.sessions || []);
+
+                    // 4. Scroll to bottom smoothly after loading history
+                    scrollToBottom();
+
+                } catch (error) {
+                    console.error('Failed to load chat data:', error);
+                    // Fallback welcome message
+                    chatWindow.innerHTML = '';
+                    addMessage('Network or database error. Please refresh. If this is a new session, you can start chatting.', 'agent');
+                }
+            }
+
+            // Load chat data when the page loads
+            loadChatData();
+
+            // Function to show a loading state
+            function showLoading() {
+                let loadingDiv = document.getElementById('loading-message');
+                if (!loadingDiv) {
+                    loadingDiv = document.createElement('div');
+                    loadingDiv.id = 'loading-message';
+                    loadingDiv.className = 'flex justify-start';
+                    loadingDiv.innerHTML = `
+                        <div class="bg-gray-200 text-gray-600 p-4 rounded-xl rounded-tl-sm max-w-[80%] shadow-md">
+                            <span class="animate-pulse">Agent is thinking...</span>
+                        </div>
+                    `;
+                    chatWindow.appendChild(loadingDiv);
+                    // Immediate jump to keep loading indicator in view
+                    chatWindow.scrollTop = chatWindow.scrollHeight; 
+                }
+                return loadingDiv;
+            }
+
+            // Function to hide the loading state
+            function hideLoading() {
+                const loadingDiv = document.getElementById('loading-message');
+                if (loadingDiv) {
+                    loadingDiv.remove();
+                }
+            }
+
+            // Handle form submission
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const message = userInput.value.trim();
+                if (!message) return;
+
+                // 1. Display user message
+                addMessage(message, 'user');
+                
+                // 2. Clear input and disable input/button
+                userInput.value = '';
+                sendButton.disabled = true;
+                userInput.disabled = true;
+                // Scroll to end after user message is added
+                scrollToBottom();
+
+                // 3. Show loading indicator
+                showLoading();
+
+                try {
+                    // 4. Send message to Flask backend, including session_id in the query
+                    const response = await fetch(`/chat?session_id=${currentSessionId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ message: message })
+                    });
+
+                    const data = await response.json();
+
+                    // 5. Hide loading indicator
+                    hideLoading();
+
+                    // 6. Display agent response
+                    if (response.ok) {
+                        addMessage(data.response, 'agent');
+                        // Scroll to end after agent response is added
+                        scrollToBottom();
+                        // After a successful chat, reload session list to reflect changes/new sessions
+                        loadChatData(); 
+                    } else {
+                        addMessage(`Error: ${data.response}`, 'agent');
+                        console.error('Agent API Error:', data.response);
+                    }
+
+                } catch (error) {
+                    // 5. Hide loading indicator on error
+                    hideLoading();
+                    // 6. Display network error
+                    addMessage('Network Error: Could not reach the server.', 'agent');
+                    console.error('Fetch Error:', error);
+                } finally {
+                    // 7. Re-enable input/button
+                    sendButton.disabled = false;
+                    userInput.disabled = false;
+                    userInput.focus();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
